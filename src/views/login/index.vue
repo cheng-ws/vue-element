@@ -51,6 +51,9 @@
 <!--                </text>-->
 <!--            </svg>-->
         </div>
+        <div class="login-Info">
+            <input type="text" v-model="username" placeholder="请输入用户名" @keydown.enter="handleGoLogin"/>
+        </div>
     </div>
 </template>
 
@@ -67,6 +70,7 @@
                     number5: '0',
                     number6: '0'
                 },
+                username: ''
             };
         },
         watch: {
@@ -97,6 +101,18 @@
                     number6: seconds.toString().slice(-1),
                 };
                 console.log(hours,minutes,seconds);
+            },
+            handleGoLogin() {
+                let vm = this;
+                if(vm.username.length > 0) {
+                    let userInfo = {
+                        username: vm.username
+                    };
+                    sessionStorage.setItem('userInfo',JSON.stringify(userInfo));
+                    vm.$router.push('/home');
+                }else {
+                    alert('请输入用户名');
+                }
             }
         }
     }
@@ -104,7 +120,7 @@
 
 <style scoped lang="scss">
     .login-clock {
-
+        top: 40%;
         .single-demo {
             margin: 50px auto;
             padding: 30px;
@@ -309,6 +325,17 @@
             font-size: 66px;
             font-style: normal;
             vertical-align: top;
+        }
+        .login-Info {
+            text-align: center;
+            margin-top: 20px;
+            input {
+                width: 300px;
+                height: 30px;
+                font-size: 12px;
+                text-align: center;
+                padding: 5px 10px;
+            }
         }
     }
 </style>

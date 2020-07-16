@@ -8,6 +8,7 @@ import HtmlPage from '@/views/html';
 import CssPage from '@/views/css';
 import JsPage from '@/views/js';
 import EChart from '@/views/echart';
+
 Vue.use(Router);
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
@@ -59,12 +60,13 @@ const router = new Router({
     ],
 });
 // 路由权限控制
-// router.beforeEach((to,from,next)=>{
-//  let username = sessionStorage.getItem('username');
-//  if(username) {
-//      next('/home');
-//  }else{
-//      next('/');
-//  }
-// });
+router.beforeEach((to, from, next) => {
+    let userInfo = sessionStorage.getItem('userInfo');
+    let info = JSON.parse(userInfo);
+    if (info.username) {
+        next('/home');
+    } else {
+        next('/');
+    }
+});
 export default router;
