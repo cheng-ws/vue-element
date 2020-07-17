@@ -52,7 +52,8 @@
 <!--            </svg>-->
         </div>
         <div class="login-Info">
-            <input type="text" v-model="username" placeholder="请输入用户名" @keydown.enter="handleGoLogin"/>
+            <input type="text" v-model="username" placeholder="请输入用户名"   @keydown.enter="handleGoLogin"/>
+            <i class="iconfont iconlogin login-Info-icon" v-show="isVisible"  @click="handleGoLogin" title="登录" />
         </div>
     </div>
 </template>
@@ -70,10 +71,17 @@
                     number5: '0',
                     number6: '0'
                 },
-                username: ''
+                username: '',
+                // //是否显示登录图标
+                // isVisible: false,
             };
         },
         watch: {
+        },
+        computed: {
+          isVisible () {
+              return this.username.length > 0;
+          }
         },
         mounted() {
             this.timer = setInterval(()=>{
@@ -101,6 +109,11 @@
                     number6: seconds.toString().slice(-1),
                 };
                 console.log(hours,minutes,seconds);
+            },
+            //输入框聚焦
+            handleFoucus() {
+                let vm = this;
+                vm.isVisible = !vm.isVisible;
             },
             handleGoLogin() {
                 let vm = this;
@@ -335,6 +348,16 @@
                 font-size: 12px;
                 text-align: center;
                 padding: 5px 10px;
+                border: 1px solid #fff;
+            }
+            i{
+                &:hover {
+                    color: #ff6666;
+                }
+            }
+            .login-Info-icon {
+                margin-left: -25px;
+                vertical-align: middle;
             }
         }
     }

@@ -3,12 +3,13 @@ import Router from "vue-router";
 
 //登录页
 import Login from '@/views/login';
-import Home from '@/views/home';
+import Index from '@/views/index';
+import HomePage from '@/views/home';
 import HtmlPage from '@/views/html';
 import CssPage from '@/views/css';
 import JsPage from '@/views/js';
 import EChart from '@/views/echart';
-
+import WebPage from '@/views/webpage';
 Vue.use(Router);
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
@@ -30,9 +31,14 @@ const router = new Router({
         },
         {
             path: "/home",
-            name: "home",
-            component: Home,
+            // name: "index",
+            component: Index,
             children: [
+                {
+                    path: '',
+                    name: 'home',
+                    component: HomePage,
+                },
                 {
                     path: '/html_page',
                     name: 'html',
@@ -49,9 +55,14 @@ const router = new Router({
                     component: JsPage
                 },
                 {
-                    path: '/echart',
-                    name: 'echart',
+                    path: '/chart_page',
+                    name: 'chart',
                     component: EChart,
+                },
+                {
+                    path: '/web_page',
+                    name: 'web',
+                    component: WebPage
                 }
             ]
         },
@@ -60,13 +71,16 @@ const router = new Router({
     ],
 });
 // 路由权限控制
-router.beforeEach((to, from, next) => {
-    let userInfo = sessionStorage.getItem('userInfo');
-    let info = JSON.parse(userInfo);
-    if (info.username) {
-        next('/home');
-    } else {
-        next('/');
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     let userInfo = sessionStorage.getItem('userInfo');
+//     if(userInfo){
+//         let info = JSON.parse(userInfo);
+//         // console.log(info);
+//         info.username ? next() : next('/');
+//     }else {
+//         next('/');
+//     }
+//
+//
+// });
 export default router;

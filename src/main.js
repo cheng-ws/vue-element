@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 //全局css
-import '@/assets/styles/common.scss';
+import 'minireset.css/minireset.css';
 import '@/assets/styles/global.scss';
 // import '@/components/element.js';
+//引入字体图标库
+import '@/assets/font/iconfont.css';
 // 路由文件
 import router from "@/router";
 // 状态管理
