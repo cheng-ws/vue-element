@@ -6,6 +6,146 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15973056",
+      "name": "地图",
+      "font_class": "ditu1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "15974080",
+      "name": "我的",
+      "font_class": "wode2",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "15974081",
+      "name": "任务",
+      "font_class": "renwu",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "15974082",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "15974083",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "15974084",
+      "name": "切换地图",
+      "font_class": "qiehuanditu",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "15974085",
+      "name": "预约活动",
+      "font_class": "yuyuehuodong",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "15974086",
+      "name": "top",
+      "font_class": "top",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "15974087",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "15974088",
+      "name": "更多",
+      "font_class": "gengduo1",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "15974089",
+      "name": "关闭_向下",
+      "font_class": "guanbi_xiangxia",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "15974090",
+      "name": "定位_列表",
+      "font_class": "dingwei_liebiao",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "15974091",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "15982265",
+      "name": "关闭",
+      "font_class": "guanbi1",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "15982272",
+      "name": "关闭_向下",
+      "font_class": "guanbi_xiangxia1",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "15982273",
+      "name": "地图",
+      "font_class": "ditu2",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "15982274",
+      "name": "定位_列表",
+      "font_class": "dingwei_liebiao1",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "15982275",
+      "name": "更多",
+      "font_class": "gengduo2",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "15982276",
+      "name": "关闭",
+      "font_class": "guanbi2",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "15982277",
+      "name": "放大",
+      "font_class": "fangda1",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
       "icon_id": "399839",
       "name": "login",
       "font_class": "login",
