@@ -6,7 +6,7 @@ import Login from '@/views/login';
 import Index from '@/views/index';
 import HomePage from '@/views/home';
 import HtmlPage from '@/views/html';
-import CssPage from '@/views/css';
+import CssPage from '@/views/css/animate';
 import JsPage from '@/views/js';
 import EChart from '@/views/echart';
 import WebPage from '@/views/webpage';

@@ -12,6 +12,11 @@ import router from "@/router";
 import store from "@/store";
 import * as echarts from 'echarts';
 // Vue.config.productionTip = false;
+import walden from '@/assets/json/walden.json';
+
+console.log(walden);
+// let waldenTheme = JSON.parse(walden);
+echarts.registerTheme('walden',walden);
 Vue.use(echarts);
 Vue.prototype.$echarts = echarts;
 // import {Loading,MessageBox,Notification,Message} from 'element-ui';

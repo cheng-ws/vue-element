@@ -1,15 +1,21 @@
 <template>
     <div class="js-box">
-        <div class="js-card  card-b-one">
+        <div class="js-card-4  card-b-one">
+            <card title="使用CSS重置(reset)">
+                <template>
+                    <div>
+
+                    </div>
+                </template>
+            </card>
+        </div>
+        <div class="js-card-4">
+            <card title="时间格式化1"></card>
+        </div>
+        <div class="js-card-4">
             <card title="时间格式化1" ref="card"></card>
         </div>
-        <div class="js-card">
-            <card title="时间格式化1" ref="card"></card>
-        </div>
-        <div class="js-card">
-            <card title="时间格式化1" ref="card"></card>
-        </div>
-        <div class="js-card">
+        <div class="js-card-4">
             <card title="时间格式化1" ref="card"></card>
         </div>
     </div>
@@ -36,7 +42,7 @@
         height: 100%;
         padding: 10px;
 
-        .js-card {
+        .js-card-4 {
             display: inline-block;
             width: 25%;
             height: 300px;
