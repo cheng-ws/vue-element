@@ -74,19 +74,20 @@ module.exports = {
     },
     //配置webpack-dev-server行为
     devServer: {
-        open: process.platform === 'darwin',
-        host: '0.0.0.0',
-        port: 8080,
-        https: false,
-        hotOnly: false,
+        // open: process.platform === 'darwin',
+        // host: '127.0.0.1',
+        // port: '8001',
+        // https: true,
+        // hotOnly: false,
+        hot: true,
         proxy: {
             '/api': {
-                target: "http://app.rem.com",
+                target: "http://127.0.0.1:3000",
                 changeOrigin: true,
-                secure: true,
+                // secure: true,
                 ws: true,
                 pathRewrite: {
-                    "^/api": "",
+                    "^/api": "http://127.0.0.1:3000",
                 }
             },
 
