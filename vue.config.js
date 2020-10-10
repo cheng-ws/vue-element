@@ -51,7 +51,7 @@ module.exports = {
     css: {
         //将组件内的css提取到一个单独的css文件（只用在生产环境中）
         //也可以是一个传递给‘extract-text-webpack-plugin'的选项对象
-        extract: process.env.NODE_ENV !== 'production',
+        // extract: process.env.NODE_ENV !== 'production',
         //是否开启 css source map ?
         sourceMap: false,
         //为预处理的loader传递自定义选项，比如传递给
@@ -69,7 +69,7 @@ module.exports = {
         // },
         //为所有的css及其预处理文件开启css modules
         //为这个选项不会影响"*.vue"文件
-        // modules: false,
+        modules: false,
         // requiredExtension: true,
     },
     //配置webpack-dev-server行为
@@ -118,6 +118,7 @@ module.exports = {
         // 配置静态文件引入路径
         config.resolve.alias
             .set('@', resolve('src'));
+        config.resolve.symlinks(true);
         // 打包构建项目时,图片压缩，开发环境不需要打开
         // config.module
         //     .rule('images')

@@ -16,6 +16,11 @@ import RoleList from '@/pages/organization/roleList';
 import UserList from '@/pages/organization/userList';
 import addShop from '@/pages/addShop';
 import htmlFive from '@/pages/htmlFive';
+import pie from '@/pages/charts/pie';
+import mapChina from "@/pages/charts/mapChina";
+import mapLine from "@/pages/charts/mapLine";
+import mapCar from "@/pages/charts/car";
+import horizontal from "@/pages/layout/horizontal";
 const routes = [
     {
         path: '/',
@@ -60,6 +65,31 @@ const routes = [
                 path: '/htmlFive',
                 component: htmlFive,
                 meta: ['HTML','Five']
+            },
+            {
+                path: '/pie',
+                component: pie,
+                meta: ['图表','饼图']
+            },
+            {
+                path: '/mapChina',
+                component: mapChina,
+                meta: ['图表','地图']
+            },
+            {
+                path: '/mapLine',
+                component: mapLine,
+                meta: ['图表','线图']
+            },
+            {
+                path: '/mapCar',
+                component: mapCar,
+                meta: ['图表','虚拟车']
+            },
+            {
+                path: '/layoutHor',
+                component: horizontal,
+                meta: ['布局','水平']
             }
         ]
     }

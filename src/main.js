@@ -17,8 +17,8 @@ import walden from '@/assets/json/walden.json';
 // console.log(walden);
 // let waldenTheme = JSON.parse(walden);
 echarts.registerTheme('walden',walden);
-Vue.use(echarts);
-// Vue.prototype.$echarts = echarts;
+// Vue.use(echarts);
+Vue.prototype.$echarts = echarts;
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);

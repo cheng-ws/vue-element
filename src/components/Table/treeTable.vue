@@ -5,14 +5,15 @@
                 style="width: 100%;margin-bottom: 20px;"
                 row-key="id"
                 border
-                default-expand-all
+                lazy
+                :load="load"
                 :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
             <el-table-column v-for="item in tableTitle"
                              :prop="item.prop"
                              :label="item.label"
                              :key="item.id">
             </el-table-column>
-            <el-table-column label="操作" :width="tableConfig.btnWidth">
+            <el-table-column label="操作" v-if="tableConfig.btnWidth > 0" :width="tableConfig.btnWidth">
                 <slot></slot>
             </el-table-column>
         </el-table>
@@ -22,7 +23,7 @@
 <script>
     export default {
         name: "treeTable",
-        prop: {
+        props: {
             listData: {
                 type: Array,
                 default: () => []
@@ -36,10 +37,10 @@
                 default: () => {
                     return {
                         isFixed: true,
-                        btnWidth: ''
+                        btnWidth: '0'
                     };
                 }
-            }
+            },
         },
         data() {
             return {
@@ -48,23 +49,13 @@
                 tableConfig: this.listConfig,
             }
         },
+        mounted() {
+            // console.log(this.tableData);
+        },
         methods: {
             load(tree, treeNode, resolve) {
-                setTimeout(() => {
-                    resolve([
-                        {
-                            id: 31,
-                            date: '2016-05-01',
-                            name: '王小虎',
-                            address: '上海市普陀区金沙江路 1519 弄'
-                        }, {
-                            id: 32,
-                            date: '2016-05-01',
-                            name: '王小虎',
-                            address: '上海市普陀区金沙江路 1519 弄'
-                        }
-                    ])
-                }, 1000)
+                let vm = this;
+                vm.$emit('getChildren',tree,treeNode,resolve);
             }
         },
     }

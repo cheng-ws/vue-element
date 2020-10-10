@@ -4,10 +4,11 @@
 
 <script>
     export default {
-        name: "echart_index",
+        name: "chart_index",
         data() {
             return {
-                chart:''
+                chart:'',
+                option: {}
             };
         },
         props: {
@@ -20,34 +21,12 @@
             },
             height: {
                 type: String,
-                default: '300px'
+                default: '100%'
             },
-            option: {
+            op: {
                 type: Object,
-                default () {
-                    return {
-                        title: {
-                            text: "vue-Echarts"
-                        },
-                        legend: {
-                            data: []
-                        },
-                        xAxis: {
-                            data: []
-                        },
-                        yAxis: [
-                            {
-                                type: 'value'
-                            }
-                        ],
-                        series: [
-                            {
-                                name: '',
-                                type: 'line',
-                                data: []
-                            }
-                        ]
-                    };
+                default: ()=>{
+                    return {};
                 }
             }
         },
@@ -60,7 +39,7 @@
             },
         },
         watch: {
-          option: {
+          op: {
               handler(newVal,oldVal) {
                   if(this.chart) {
                       if(newVal) {
@@ -73,16 +52,37 @@
                   }
               },
               deep: true,
+              // immediate:true,
           }
         },
         mounted() {
             this.init();
+            this.buildResize();
         },
         methods: {
             init() {
                 this.chart = this.$echarts.init(document.getElementById(this.id));
                 this.chart.setOption(this.option);
             },
+            _resetOption(data) {
+                let op = JSON.parse(JSON.stringify(data));
+                if(Object.keys(op).length > 0) {
+                    this.chart.setOption(op);
+                }
+            },
+            buildResize() {
+              let vm = this;
+              let flag = false;
+              window.onresize = function () {
+                  if(!flag) {
+                      flag = true;
+                      setTimeout(()=>{
+                          vm.chart.resize();
+                          flag = false;
+                      },500);
+                  }
+              }
+            }
             //父级请求动态刷新数据
             // refreshData() {
             //     //横轴数据

@@ -16,6 +16,7 @@
     import 'echarts/lib/component/tooltip';
 
     export default {
+
         mounted() {
             this.myChart = echarts.init(document.getElementById('line1'));
             this.initData();

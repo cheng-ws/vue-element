@@ -1,19 +1,35 @@
 <template>
-    <el-table
-            :data="tableData"
-            :height="tableConfig.height"
-            border
-            style="width: 100%"
-    >
-        <el-table-column v-for="item in tableTitle"
-                         :prop="item.prop"
-                         :label="item.label"
-                         :key="item.id">
-        </el-table-column>
-        <el-table-column label="操作" :width="tableConfig.btnWidth">
-            <slot></slot>
-        </el-table-column>
-    </el-table>
+    <div class="table-box">
+        <el-table
+                :data="tableData"
+                :height="tableConfig.height"
+                border
+                row-key="id"
+                style="width: 100%"
+                @selection-change="handleSelectionChange"
+        >
+            <el-table-column
+                    v-if="tableConfig.checkbox"
+                    type="selection"
+                    width="55">
+            </el-table-column>
+            <el-table-column v-for="(item,index) in tableTitle"
+                             :prop="item.prop"
+                             :label="item.label"
+                             :key="index">
+            </el-table-column>
+            <el-table-column label="操作" v-if="tableConfig.btnWidth > 0" :width="tableConfig.btnWidth">
+                <template slot-scope="scope">
+                    <slot :data="scope"></slot>
+<!--                    <el-button type="primary" icon="el-icon-edit" circle-->
+<!--                               @click="handleEdit(scope.$index, scope)"></el-button>-->
+<!--                    <el-button type="danger" icon="el-icon-delete" circle-->
+<!--                               @click="handleDelete(scope.$index, scope)"></el-button>-->
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
 </template>
 
 <script>
@@ -37,7 +53,8 @@
                     return {
                         //是否固定宽度
                         isFixed: true,
-                        btnWidth: ''
+                        btnWidth: '0',
+                        checkbox: true,
                     };
                 }
             }
@@ -45,12 +62,43 @@
         },
         data() {
             return {
-                tableData: this.listData,
-                tableTitle: this.listTitle,
-                tableConfig: this.listConfig,
+                tableData: [],
+                tableTitle: [],
+                tableConfig: {},
             }
         },
+        watch: {
+            'listData': {
+                handler(val){
+                    this.tableData = val;
+                },
+                deep: true,
+                immediate: true,
+            },
+            'listTitle': {
+                handler(val){
+                    this.tableTitle = val;
+                },
+                deep: true,
+                immediate: true,
+            },
+            'listConfig': {
+                handler(val){
+                    this.tableConfig = val;
+                },
+                deep: true,
+                immediate: true,
+            }
+        },
+        mounted() {
+
+        },
         methods: {
+            handleSelectionChange(val){
+                // console.log(val);
+                let vm = this;
+                vm.$emit('checkbox',val);
+            },
             getWidth(item) {
                 let vm = this;
 
@@ -64,6 +112,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.table-box {
+    margin: 20px 0;
+}
 </style>
