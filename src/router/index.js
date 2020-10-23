@@ -21,6 +21,7 @@ import mapChina from "@/pages/charts/mapChina";
 import mapLine from "@/pages/charts/mapLine";
 import mapCar from "@/pages/charts/car";
 import horizontal from "@/pages/layout/horizontal";
+import chat from "@/pages/chat/index";
 const routes = [
     {
         path: '/',
@@ -90,6 +91,11 @@ const routes = [
                 path: '/layoutHor',
                 component: horizontal,
                 meta: ['布局','水平']
+            },
+            {
+                path: '/chat',
+                component: chat,
+                meta: ['沟通']
             }
         ]
     }

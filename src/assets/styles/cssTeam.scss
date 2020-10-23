@@ -1,0 +1,13 @@
+// 1. 盒模型
+//标准盒子模型： 宽度 = 内容宽度(content)+border+padding+margin
+//低版本IE盒子模型： 宽度 = 内容宽度(content+border+padding)+margin
+//2 居中
+// 块级居中： margin: 0 auto;
+// 行级居中(inline, inline-block) 父元素css: text-align: center;
+// 定位水平垂直居中： left: 50%; top: 50%;
+// margin-left: -自身宽度的一半;margin-top: -自身高度的一半;
+// 定位水平垂直居中： top: 0; bottom 0; left: 0; right: 0; margin: auto;
+// css3+定位水平垂直居中： left: 50%; top: 50%; transform: translate(-50%,-50%);
+// 水平垂直居中： display: table-cell; vertical-align: middle;
+// 水平垂直居中： flexBox居中 display: flex; justify-content: center; align-item:center;
+// 水平垂直居中： vertical-align: middle;
