@@ -69,8 +69,8 @@ module.exports = {
         // },
         //为所有的css及其预处理文件开启css modules
         //为这个选项不会影响"*.vue"文件
-        modules: false,
-        // requiredExtension: true,
+        // modules: false,
+        requiredExtension: true,
     },
     //配置webpack-dev-server行为
     devServer: {
@@ -87,7 +87,7 @@ module.exports = {
                 // secure: true,
                 ws: true,
                 pathRewrite: {
-                    "^/api": "http://127.0.0.1:3000",
+                    "^/api": "127.0.0.1:3000",
                 }
             },
 
