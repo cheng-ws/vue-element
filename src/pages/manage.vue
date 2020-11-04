@@ -22,7 +22,7 @@
                         <template slot="title"><i class="el-icon-takeaway-box"></i>布局</template>
                         <el-menu-item index="layoutHor">水平</el-menu-item>
                     </el-submenu>
-                    <el-menu-item index="chat"><i class="el-icon-chat-line-square"></i>沟通</el-menu-item>
+<!--                    <el-menu-item index="chat"><i class="el-icon-chat-line-square"></i>沟通</el-menu-item>-->
 <!--                    <el-submenu index="4">-->
 <!--                        <template slot="title"><i class="el-icon-star-on"></i>图表</template>-->
 <!--                        <el-menu-item index="visitor">用户分布</el-menu-item>-->

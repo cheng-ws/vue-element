@@ -70,7 +70,7 @@ module.exports = {
         //为所有的css及其预处理文件开启css modules
         //为这个选项不会影响"*.vue"文件
         // modules: false,
-        requiredExtension: true,
+        // requiredExtension: true,
     },
     //配置webpack-dev-server行为
     devServer: {

@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-// 设置 post 请求头
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-// 配置请求地址
-axios.defaults.baseURL = '/api/mysql';
-// 配置超时时间
-axios.defaults.timeout = 5000;
-// 配置session
-axios.defaults.withCredentials = true;
-// 登录
+// // 设置 post 请求头
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// // 配置请求地址
+// axios.defaults.baseURL = '/api/mysql';
+// // 配置超时时间
+// axios.defaults.timeout = 5000;
+// // 配置session
+// axios.defaults.withCredentials = true;
+// // 登录
 /**
  * 登陆
  */

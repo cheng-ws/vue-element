@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import {login} from '@/api/getData';
+    // import {login} from '@/api/getData';
     import {mapState} from 'vuex';
 
     export default {
@@ -49,7 +49,7 @@
         },
         mounted() {
             this.showLogin = true;
-            this.jumpHome();
+            // this.jumpHome();
         },
         computed: {
             ...mapState(['userInfo']),
@@ -72,21 +72,27 @@
                 vm.$refs[formName].validate(async (valid) => {
                     if (valid) {
                         let userInfo = {
-                            username: this.loginForm.username,
-                            password: this.loginForm.password
+                            username: vm.loginForm.username,
+                            password: vm.loginForm.password
                         };
-                        const res = await login(userInfo);
-                        console.log(res);
-                        if (res.data.status === 200) {
-                            this.$tools.setSession('userInfo', res.data.data, 'json');
-                            this.$message({message: '登录成功', type: 'success'});
-                            this.$router.push('manage');
-                        } else {
-                            this.$message({
-                                type: 'error',
-                                message: res.message
-                            });
-                        }
+                        vm.$api.login.signup(userInfo)
+                        .then(res=>{
+                            console.log(res);
+                        })
+                        .catch(err=>{
+                            console.log(err);
+                        })
+                        // const res = await login(userInfo);
+                        // if (res.data.status === 200) {
+                        //     this.$tools.setSession('userInfo', res.data.data, 'json');
+                        //     this.$message({message: '登录成功', type: 'success'});
+                        //     this.$router.push('manage');
+                        // } else {
+                        //     this.$message({
+                        //         type: 'error',
+                        //         message: res.message
+                        //     });
+                        // }
                     } else {
                         this.$notify.error({
                             title: '错误',

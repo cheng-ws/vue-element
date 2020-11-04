@@ -89,9 +89,9 @@
             this.socket.emit('disconnect',this.sendUser);
         },
         computed: {
-            newMessage () {
-                {{item.receiverUser === sendUser ? `${item.sendUser} -> ${item.receiverUser} : ${item.message}`: `${item.sendUser} -> ${item.receiverUser} : ${item.message}`}}
-            }
+            // newMessage () {
+            //     return {{item.receiverUser === sendUser ? `${item.sendUser} -> ${item.receiverUser} : ${item.message}`: `${item.sendUser} -> ${item.receiverUser} : ${item.message}`}};
+            // }
         },
         methods: {
             init() {
@@ -168,7 +168,7 @@
             handleExceed(files, fileList) {
                 this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
             },
-            beforeRemove(file, fileList) {
+            beforeRemove(file) {
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
             handleSuccess(res) {

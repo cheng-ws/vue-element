@@ -36,6 +36,8 @@ Vue.prototype.$tools = tools;
 // Vue.prototype.$prompt = MessageBox.prompt;
 // Vue.prototype.$notify = Notification;
 // Vue.prototype.$message = Message;
+import api from './api';
+Vue.prototype.$api = api;
 new Vue({
   store,
   router,
