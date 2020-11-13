@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import  Router from 'vue-router'
-
 Vue.use(Router);
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = Router.prototype.push;
@@ -25,15 +24,11 @@ import horizontal from "@/pages/layout/horizontal";
 const routes = [
     {
         path: '/',
-        component: login,
-    },
-    {
-        path: '/manage',
         component: manage,
         name: '',
         children: [
             {
-                path: '',
+                path: '/home',
                 component: home,
                 meta: ['首页'],
             },
@@ -98,9 +93,35 @@ const routes = [
             //     meta: ['沟通']
             // }
         ]
-    }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: login,
+    },
 ];
-export default new Router({
+const router = new Router({
     routes,
     strict: process.env.NODE_ENV !== 'production',
 });
+// let vm = new Vue();
+router.beforeEach((to,from,next)=>{
+    if(sessionStorage.getItem('token')) {
+        if(to.path === '/') {
+            next('/home');
+        }
+        next();
+    }else{
+        if(to.path !== '/login') {
+            next({
+                name: 'login',
+                params: {
+                    redirect: to.fullPath,
+                }
+                //这个params很关键，它保证了登录成功后会跳转到指定的页面，而不是直接去首页
+            });
+        }
+        next();
+    }
+});
+export default router;

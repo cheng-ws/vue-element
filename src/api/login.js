@@ -6,8 +6,11 @@ const login = {
     signup (params) {
       return axios.post(`${url}/login/signup`,qs.stringify(params));
     },
-    signout(params) {
-        return axios.post(`${url}/login/signout`,qs.stringify(params));
+    signdown(params) {
+        return axios.post(`${url}/login/signdown`,qs.stringify(params));
+    },
+    register(params) {
+        return axios.post(`${url}/login/register`,qs.stringify(params));
     }
 };
 export default login;

@@ -26,7 +26,7 @@
 
 <script>
     // import {login} from '@/api/getData';
-    import {mapState} from 'vuex';
+    import {mapMutations} from 'vuex';
 
     export default {
         name: "login",
@@ -49,27 +49,12 @@
         },
         mounted() {
             this.showLogin = true;
-            // this.jumpHome();
-        },
-        computed: {
-            ...mapState(['userInfo']),
-        },
-        watch: {
-            userInfo: function (newValue) {
-                if (newValue.id) {
-                    this.$message({
-                        type: 'success',
-                        message: '检测到您之前登录过，将自动登录'
-                    });
-                    this.$router.push('manage');
-                }
-            }
         },
         methods: {
-            // ...mapActions(['getUserInfo']),
-            async submitForm(formName) {
+            ...mapMutations(['CHANGE_USER_INFO','CHANGE_TOKEN']),
+            submitForm(formName) {
                 let vm = this;
-                vm.$refs[formName].validate(async (valid) => {
+                vm.$refs[formName].validate((valid) => {
                     if (valid) {
                         let userInfo = {
                             username: vm.loginForm.username,
@@ -77,22 +62,23 @@
                         };
                         vm.$api.login.signup(userInfo)
                         .then(res=>{
-                            console.log(res);
+                            // console.log(res);
+                             let data = res.data.data;
+                             let userInfo = {
+                                 _id: data._id,
+                                 username: data.username,
+                                 createAt: data.createAt,
+                             };
+                             vm.CHANGE_TOKEN(data.token);
+                             vm.CHANGE_USER_INFO(userInfo);
+                             vm.$router.push({
+                                 path: vm.$route.params.redirect || '/',
+                             }); //跳转到指定页面
                         })
                         .catch(err=>{
                             console.log(err);
                         })
-                        // const res = await login(userInfo);
-                        // if (res.data.status === 200) {
-                        //     this.$tools.setSession('userInfo', res.data.data, 'json');
-                        //     this.$message({message: '登录成功', type: 'success'});
-                        //     this.$router.push('manage');
-                        // } else {
-                        //     this.$message({
-                        //         type: 'error',
-                        //         message: res.message
-                        //     });
-                        // }
+
                     } else {
                         this.$notify.error({
                             title: '错误',
@@ -102,14 +88,6 @@
                         return false;
                     }
                 });
-            },
-            jumpHome() {
-                let vm = this;
-                let userInfo = vm.$tools.getSession('userInfo', 'json');
-                if (userInfo) {
-                    vm.$store.commit('saveUserInfo', userInfo);
-                    // vm.$router.push('manage');
-                }
             },
         },
     }

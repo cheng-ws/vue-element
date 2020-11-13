@@ -11,16 +11,15 @@
             </span>
             <el-dropdown-menu slot="dropdown">
 <!--                <el-dropdown-item command="home">首页</el-dropdown-item>-->
-                <el-dropdown-item command="loginOut">退出</el-dropdown-item>
+                <el-dropdown-item command="signdown">退出</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>
 </template>
 
 <script>
-    import {loginOut} from '@/api/getData'
     // import {baseImgPath} from '@/config/env'
-    import { mapState} from 'vuex'
+    import { mapMutations } from 'vuex'
 
     export default {
         name: "headTop",
@@ -29,41 +28,39 @@
                 // baseImgPath,
             };
         },
-        created () {
-            let vm = this;
-            vm.getUserInfo();
-        },
-        computed: {
-            ...mapState(['userInfo']),
-        },
+        // computed: {
+        //     ...mapState(['userInfo']),
+        // },
         methods: {
             // ...mapActions(['getAdminData']),
-            async handleCommand(command) {
+            ...mapMutations(['removeToken']),
+            handleCommand(command) {
                 let vm = this;
                 if (command == 'home') {
                     vm.$router.push('/manage');
-                } else if (command == 'loginOut') {
-                    const res = await loginOut({id: vm.userInfo.id});
-                    if (res.data.status == 200) {
-                        vm.$tools.removeSession('userInfo');
-                        vm.$message({
-                            type: 'success',
-                            message: '退出成功'
-                        });
-                        vm.$router.push('/');
-                    } else {
-                        vm.$message({
-                            type: 'error',
-                            message: res.message
-                        });
-                    }
-                }
-            },
-            getUserInfo() {
-                let vm = this;
-                let userInfo = vm.$tools.getSession('userInfo', 'json');
-                if (userInfo && !vm.userInfo.id) {
-                    vm.$store.commit('saveUserInfo', userInfo);
+                } else if (command == 'signdown') {
+                    vm.$api.login.signdown({id: vm.$store.getters.getUserInfo._id})
+                    .then((res)=>{
+                        if (res.data.status == 200) {
+                            vm.
+                            vm.$tools.removeSession('userInfo');
+
+                            // console.log(vm.mapMutations);
+                            vm.$router.push('/login');
+                            vm.$message({
+                                type: 'success',
+                                message: '退出成功'
+                            });
+                        } else {
+                            vm.$message({
+                                type: 'error',
+                                message: res.data.msg
+                            });
+                        }
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
                 }
             },
         }

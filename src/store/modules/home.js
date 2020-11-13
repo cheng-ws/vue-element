@@ -1,20 +1,28 @@
 export default {
     state: {
-        userInfo: null,
-        token: null,
+        userInfo: sessionStorage.getItem('userInfo')?sessionStorage.getItem('userInfo'):'',
+        token: sessionStorage.getItem('token') ? sessionStorage.getItem('token'):'',
         network: true,
     },
     getters: {
         getUserInfo(state) {
-            return state.userInfo;
+            return JSON.parse(state.userInfo);
         }
     },
     mutations: {
         'CHANGE_USER_INFO'(state,userInfo) {
-            state.userInfo = userInfo;
+            sessionStorage.setItem('userInfo',JSON.stringify(userInfo));
+            state.userInfo = JSON.stringify(userInfo);
         },
         'CHANGE_TOKEN'(state,token) {
+            sessionStorage.setItem('token',token);
             state.token = token;
+        },
+        removeUserInfo () {
+            sessionStorage.removeItem('userInfo');
+        },
+        removeToken() {
+            sessionStorage.removeItem('token');
         },
         'CHANGE_NET_WORK'(state,network) {
             state.network = network;

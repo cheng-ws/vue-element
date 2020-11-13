@@ -82,12 +82,12 @@ module.exports = {
         hot: true,
         proxy: {
             '/api': {
-                target: "http://127.0.0.1:3000",
+                target: "http://localhost:3000",
                 changeOrigin: true,
                 // secure: true,
                 ws: true,
                 pathRewrite: {
-                    "^/api": "127.0.0.1:3000",
+                    "^/api": "",
                 }
             },
 
