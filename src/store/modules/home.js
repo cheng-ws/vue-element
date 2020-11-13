@@ -18,11 +18,13 @@ export default {
             sessionStorage.setItem('token',token);
             state.token = token;
         },
-        removeUserInfo () {
+        removeUserInfo (state) {
             sessionStorage.removeItem('userInfo');
+            state.userInfo = '';
         },
-        removeToken() {
+        removeToken(state) {
             sessionStorage.removeItem('token');
+            state.token = '';
         },
         'CHANGE_NET_WORK'(state,network) {
             state.network = network;

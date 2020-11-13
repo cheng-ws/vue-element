@@ -25,7 +25,6 @@ const routes = [
     {
         path: '/',
         component: manage,
-        name: '',
         children: [
             {
                 path: '/home',

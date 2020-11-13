@@ -1,18 +1,18 @@
 <template>
-    <div class="home-G">
-        <div></div>
-        <div class="home-chart">
-            <e-chart id="home-e-chart" :option="optionData" width="50%" height="300px"></e-chart>
-        </div>
+    <div>
+        首页
+<!--        <div class="home-chart">-->
+<!--            <e-chart id="home-e-chart" :option="optionData" width="50%" height="300px"></e-chart>-->
+<!--        </div>-->
     </div>
 </template>
 
 <script>
-    import EChart from '@/components/EChart';
+    // import EChart from '@/components/EChart';
     export default {
         name: "home",
         components: {
-            EChart,
+            // EChart,
         },
         data() {
             return {

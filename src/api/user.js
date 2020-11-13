@@ -6,7 +6,7 @@ const user = {
     userInfo () {
         return axios.get(`${url}/user/info`);
     },
-    userList (params) {
+    getUserList (params) {
        return axios.post(`${url}/user/list`,qs.stringify(params));
     },
     userImage(id,params) {

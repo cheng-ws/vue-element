@@ -7,7 +7,7 @@
         <el-dropdown @command="handleCommand" menu-align='start'>
             <!--            <img :src="baseImgPath + adminInfo.avatar" class="avator">-->
             <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                {{currentUserName}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
 <!--                <el-dropdown-item command="home">首页</el-dropdown-item>-->
@@ -19,21 +19,26 @@
 
 <script>
     // import {baseImgPath} from '@/config/env'
-    import { mapMutations } from 'vuex'
+    // import { mapMutations } from 'vuex'
 
     export default {
         name: "headTop",
         data() {
             return {
                 // baseImgPath,
+                currentUserName: '',
             };
         },
         // computed: {
         //     ...mapState(['userInfo']),
         // },
+        created () {
+          let vm = this;
+          vm.currentUserName = vm.$store.getters.getUserInfo.username;
+        },
         methods: {
             // ...mapActions(['getAdminData']),
-            ...mapMutations(['removeToken']),
+            // ...mapMutations(['removeToken']),
             handleCommand(command) {
                 let vm = this;
                 if (command == 'home') {
@@ -42,10 +47,9 @@
                     vm.$api.login.signdown({id: vm.$store.getters.getUserInfo._id})
                     .then((res)=>{
                         if (res.data.status == 200) {
-                            vm.
-                            vm.$tools.removeSession('userInfo');
-
-                            // console.log(vm.mapMutations);
+                            // vm.$tools.removeSession('userInfo');
+                            vm.$store.commit('removeToken');
+                            vm.$store.commit('removeUserInfo');
                             vm.$router.push('/login');
                             vm.$message({
                                 type: 'success',
