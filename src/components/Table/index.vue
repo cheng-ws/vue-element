@@ -18,7 +18,7 @@
                              :label="item.label"
                              :key="index">
             </el-table-column>
-            <el-table-column label="操作" v-if="tableConfig.btnWidth > 0" :width="tableConfig.btnWidth">
+            <el-table-column label="操作" class="btns" v-if="tableConfig.btnWidth > 0" :width="tableConfig.btnWidth">
                 <template slot-scope="scope">
                     <slot :data="scope"></slot>
 <!--                    <el-button type="primary" icon="el-icon-edit" circle-->
@@ -115,5 +115,8 @@
 <style scoped lang="scss">
 .table-box {
     margin: 20px 0;
+    .btns {
+
+    }
 }
 </style>

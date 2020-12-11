@@ -7,12 +7,10 @@
 <script>
     export default {
         name: "controlList",
-        components: {
-
-        }
+        components: {}
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

@@ -103,13 +103,15 @@ const router = new Router({
     routes,
     strict: process.env.NODE_ENV !== 'production',
 });
-// let vm = new Vue();
+let vm = new Vue();
 router.beforeEach((to,from,next)=>{
+    console.log(to,from);
     if(sessionStorage.getItem('token')) {
         if(to.path === '/') {
             next('/home');
+        }else {
+            next();
         }
-        next();
     }else{
         if(to.path !== '/login') {
             next({
@@ -119,8 +121,14 @@ router.beforeEach((to,from,next)=>{
                 }
                 //这个params很关键，它保证了登录成功后会跳转到指定的页面，而不是直接去首页
             });
+            vm.$notify.warning({
+                title: '警告',
+                message: '请先登录！',
+                offset: 100
+            });
+        }else {
+            next();
         }
-        next();
     }
 });
 export default router;

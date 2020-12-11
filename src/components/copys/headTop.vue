@@ -1,19 +1,23 @@
 <template>
     <div class="header_container">
-        <el-breadcrumb separator="/">
-<!--            <el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>-->
+        <el-breadcrumb separator="/" class="header-title">
+            <!--            <el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>-->
             <el-breadcrumb-item v-for="(item, index) in $route.meta" :key="index">{{item}}</el-breadcrumb-item>
         </el-breadcrumb>
-        <el-dropdown @command="handleCommand" menu-align='start'>
-            <!--            <img :src="baseImgPath + adminInfo.avatar" class="avator">-->
-            <span class="el-dropdown-link">
+        <div class="header-btn">
+            <i class="el-icon-full-screen" @click="handleExpend"></i>
+            <el-dropdown @command="handleCommand" menu-align='start'>
+                <!--            <img :src="baseImgPath + adminInfo.avatar" class="avator">-->
+                <span class="el-dropdown-link">
                 {{currentUserName}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
-            <el-dropdown-menu slot="dropdown">
-<!--                <el-dropdown-item command="home">首页</el-dropdown-item>-->
-                <el-dropdown-item command="signdown">退出</el-dropdown-item>
-            </el-dropdown-menu>
-        </el-dropdown>
+                <el-dropdown-menu slot="dropdown">
+                    <!--                <el-dropdown-item command="home">首页</el-dropdown-item>-->
+                    <el-dropdown-item command="signdown">退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </div>
+
     </div>
 </template>
 
@@ -23,7 +27,7 @@
 
     export default {
         name: "headTop",
-        data() {
+        data () {
             return {
                 // baseImgPath,
                 currentUserName: '',
@@ -33,38 +37,49 @@
         //     ...mapState(['userInfo']),
         // },
         created () {
-          let vm = this;
-          vm.currentUserName = vm.$store.getters.getUserInfo.username;
+            let vm = this;
+            vm.currentUserName = vm.$store.getters.getUserInfo.username;
         },
         methods: {
             // ...mapActions(['getAdminData']),
             // ...mapMutations(['removeToken']),
-            handleCommand(command) {
+            //全屏
+            handleExpend () {
+                let vm = this;
+                if (document.fullscreenElement) {
+                    // console.log("进入全屏");
+                    vm.$tools.exitFullscreen();
+                } else {
+                    // console.log("退出全屏");
+                    vm.$tools.launchFullscreen(document.documentElement);
+                }
+            },
+            handleCommand (command) {
                 let vm = this;
                 if (command == 'home') {
                     vm.$router.push('/manage');
                 } else if (command == 'signdown') {
                     vm.$api.login.signdown({id: vm.$store.getters.getUserInfo._id})
-                    .then((res)=>{
-                        if (res.data.status == 200) {
-                            // vm.$tools.removeSession('userInfo');
-                            vm.$store.commit('removeToken');
-                            vm.$store.commit('removeUserInfo');
-                            vm.$router.push('/login');
-                            vm.$message({
-                                type: 'success',
-                                message: '退出成功'
-                            });
-                        } else {
-                            vm.$message({
-                                type: 'error',
-                                message: res.data.msg
-                            });
-                        }
-                    })
-                    .catch((err)=>{
-                        console.log(err);
-                    })
+                        .then((res) => {
+                            if (res.data.status == 200) {
+                                // vm.$tools.removeSession('userInfo');
+                                vm.$store.commit('removeToken');
+                                vm.$store.commit('removeUserInfo');
+                                vm.$router.push('/login');
+                                vm.$message({
+                                    type: 'success',
+                                    message: '退出成功'
+                                });
+                            } else {
+                                vm.$message({
+                                    type: 'error',
+                                    message: res.data.msg
+                                });
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                 }
             },
         }
@@ -78,10 +93,23 @@
         /*background-color: #EFF2F7;*/
         border-bottom: 1px solid #eeeeee;
         height: 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        /*display: flex;*/
+        /*justify-content: space-between;*/
+        /*align-items: center;*/
         padding: 0 20px;
+        line-height: 60px;
+
+        .header-title {
+            display: inline-block;
+        }
+
+        .header-btn {
+            float: right;
+
+            i {
+                margin-right: 10px;
+            }
+        }
     }
 
     .avator {

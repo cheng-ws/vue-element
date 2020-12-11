@@ -43,7 +43,7 @@
     // import headTop from '../components/copys/headTop'
     // import tendency from '../components/copys/tendency'
     // import dtime from 'time-formater'
-    import {userCount, orderCount, getUserCount, getOrderCount, adminDayCount, adminCount} from '@/api/getData'
+    import {userCount, orderCount, getUserCount, getOrderCount, adminDayCount, adminCount} from '@/api/nouse/getData'
 
     export default {
         name: "home",
